@@ -11,7 +11,14 @@ function generateId() {
   return Math.floor(Math.random() * 1000);
 }
 
-async function isExist(id) {
+async function isNameExist(name) {
+  const fileRoot = __dirname.split("routes")[0];
+  const fileData = await dataBaseFile(fileRoot);
+  const index = fileData.findIndex((obj) => obj.name === name);
+  index ? true : false;
+}
+
+async function isIdExist(id) {
   const fileRoot = __dirname.split("routes")[0];
   const fileData = await dataBaseFile(fileRoot);
   fileData.findIndex((obj) => obj.id === id) ? true : false;
@@ -36,6 +43,12 @@ personsRouter.post("/", async (req, res) => {
   const fileRoot = __dirname.split("routes")[0];
   const fileData = await dataBaseFile(fileRoot);
   const obj = req.body;
+  if (!obj.name) {
+    res.send("cannot add without name");
+  }
+  if (await isNameExist(obj.name)) {
+    res.send("name is not available");
+  }
   obj.id = generateId();
   fileData.push(obj);
   await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
