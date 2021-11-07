@@ -1,0 +1,27 @@
+{
+  "name": "cyber4s-openfullstack",
+  "version": "1.0.0",
+  "description": "In this repository we are going to particpating work in the openFullStack platform",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimpleLogic420/Cyber4S-openFullStack.git"
+  },
+  "author": "nadav_vol <simplelogic420@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SimpleLogic420/Cyber4S-openFullStack/issues"
+  },
+  "homepage": "https://github.com/SimpleLogic420/Cyber4S-openFullStack#readme"
+}
