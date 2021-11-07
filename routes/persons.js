@@ -48,7 +48,7 @@ personsRouter.post("/", async (req, res) => {
   const fileData = await dataBaseFile(fileRoot);
   const obj = req.body;
   if (!obj.name) {
-    res.status(400).send("cannot add without name");
+    res.status(400).send("cannot add without name!");
   }
   if (isNameExist(obj.name, fileData)) {
     res.status(409).send("name is not available");
