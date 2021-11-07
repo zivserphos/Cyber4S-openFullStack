@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 //const morgan = require("morgan");
+const infoRouter = require("./routers/info");
 const app = express();
 const presonsRouter = require("./routers/presons");
 const persons = require("./phonebook");
@@ -16,11 +17,7 @@ app.use(express.json());
 
 // * Routers
 app.use("/api/persons", presonsRouter);
-
-// * main - REST
-app.get("/info", (req, res, next) => {
-  res.send(`Phonebook has info for ${persons.length} peaple.\n${new Date()}`);
-});
+app.use("/info", presonsRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
