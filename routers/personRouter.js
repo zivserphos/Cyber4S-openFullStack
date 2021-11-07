@@ -9,17 +9,19 @@ function getRandomInt(max) {
 }
 async function isNameExist(name) {
   const database = JSON.parse(await fs.readFile("db.json", "utf-8"));
-  for (let person of database.persons) {
+
+  for (let person of database) {
     if (person.name === name) {
       return true;
-    } else {
-      return false;
     }
   }
+  console.log("false");
+  return false;
 }
 
-personRouter.get("/", (request, response) => {
-  response.json(persons);
+personRouter.get("/", async (request, response) => {
+  const database = JSON.parse(await fs.readFile("db.json", "utf-8"));
+  response.json(database);
 });
 
 personRouter.get("/:id", (request, response) => {
@@ -39,20 +41,19 @@ personRouter.delete("/:id", (request, response) => {
 });
 personRouter.post("/", async (request, response) => {
   const database = JSON.parse((await fs.readFile("db.json")).toString());
-  console.log(database);
 
   const person = request.body;
   person.id = getRandomInt(999);
 
-  if (person.name && person.id) {
-    console.log("popo");
-    if (!isNameExist(person.name)) {
-      console.log(person);
+  if (person.name) {
+    if (await isNameExist(person.name)) {
+      console.log("notgood");
+      response.status(404).end();
+    } else {
       database.push(person);
+      console.log(database);
       fs.writeFile("./db.json", JSON.stringify(database));
       response.json(person);
-    } else {
-      response.status(404).end();
     }
   }
 });
