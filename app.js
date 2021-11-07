@@ -15,11 +15,12 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body")
 );
 
+app.use("/", express.static(path.resolve(`./dist`)));
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/dist/index.html");
+});
+
 app.use("/api/persons", personsRouter);
 app.use("/info", infoRouter);
-
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
 
 module.exports = app;
