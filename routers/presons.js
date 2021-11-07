@@ -36,10 +36,7 @@ router.post("/", (req, res, next) => {
   ) {
     res.status(404).json({ error: "name / number missing from body" });
   } else {
-    const result = persons.filter((person) => {
-      return person.name === newPerson.name;
-    });
-    if (result.length !== 0) {
+    if (isNameExsits()) {
       res.status(404).json({ error: "name must be unique" });
     } else {
       newPerson.id = generateId();
@@ -57,4 +54,11 @@ module.exports = router;
 
 function generateId() {
   return Math.floor(Math.random() * 1000);
+}
+
+function isNameExsits() {
+  const result = persons.filter((person) => {
+    return person.name === newPerson.name;
+  });
+  return result.length !== 0;
 }
