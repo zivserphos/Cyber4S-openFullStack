@@ -25,7 +25,6 @@ async function isIdExist(id) {
 }
 
 personsRouter.get("/", async (req, res) => {
-  //const fileData = (await fsAsync.readFile("./data/data.json")).toString()
   fileRoot = __dirname.split("routes")[0];
   res.sendFile(`${fileRoot}/data/data.json`);
 });
@@ -44,10 +43,10 @@ personsRouter.post("/", async (req, res) => {
   const fileData = await dataBaseFile(fileRoot);
   const obj = req.body;
   if (!obj.name) {
-    res.send("cannot add without name");
+    res.status(400).send("cannot add without name");
   }
   if (await isNameExist(obj.name)) {
-    res.send("name is not available");
+    res.status(403).send("name is not available");
   }
   obj.id = generateId();
   fileData.push(obj);
