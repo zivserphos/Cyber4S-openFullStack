@@ -28,8 +28,19 @@ router.delete("/:id", (req, res, next) => {
   }
 });
 
+router.post("/", (req, res, next) => {
+  const newPerson = req.body;
+  newPerson.id = generateId();
+  persons.push(newPerson);
+  res.send(persons);
+});
+
 router.get("/", (req, res, next) => {
   res.send(persons);
 });
 
 module.exports = router;
+
+function generateId() {
+  return Math.floor(Math.random() * 1000);
+}
