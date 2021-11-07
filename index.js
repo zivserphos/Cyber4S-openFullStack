@@ -58,8 +58,8 @@ app.delete("/api/persons/:id", (request, response) => {
 });
 app.post("/api/persons", (request, response) => {
   console.log(request.body);
-  const person = request.body;
   person.id = getRandomInt(999);
+  const person = request.body;
   console.log(person);
   if (person) {
     console.log(persons);
