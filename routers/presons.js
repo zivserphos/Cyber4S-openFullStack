@@ -30,9 +30,23 @@ router.delete("/:id", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
   const newPerson = req.body;
-  newPerson.id = generateId();
-  persons.push(newPerson);
-  res.send(persons);
+  if (
+    !newPerson.hasOwnProperty("name") ||
+    !newPerson.hasOwnProperty("number")
+  ) {
+    res.status(404).json({ error: "name / number missing from body" });
+  } else {
+    const result = persons.filter((person) => {
+      return person.name === newPerson.name;
+    });
+    if (result.length !== 0) {
+      res.status(404).json({ error: "name must be unique" });
+    } else {
+      newPerson.id = generateId();
+      persons.push(newPerson);
+      res.send(persons);
+    }
+  }
 });
 
 router.get("/", (req, res, next) => {
