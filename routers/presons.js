@@ -37,7 +37,7 @@ router.post("/", (req, res, next) => {
     res.status(404).json({ error: "name / number missing from body" });
   } else {
     if (isNameExsits()) {
-      res.status(404).json({ error: "name must be unique" });
+      res.status(409).json({ error: "name must be unique" });
     } else {
       newPerson.id = generateId();
       persons.push(newPerson);
