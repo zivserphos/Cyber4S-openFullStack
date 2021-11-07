@@ -11,17 +11,13 @@ function generateId() {
   return Math.floor(Math.random() * 1000);
 }
 
-async function isNameExist(name) {
-  const fileRoot = __dirname.split("routes")[0];
-  const fileData = await dataBaseFile(fileRoot);
-  const index = fileData.findIndex((obj) => obj.name === name);
+function isNameExist(name, fileData) {
+  const index = fileData.persons.findIndex((obj) => obj.name === name);
   index ? true : false;
 }
 
-async function isIdExist(id) {
-  const fileRoot = __dirname.split("routes")[0];
-  const fileData = await dataBaseFile(fileRoot);
-  fileData.findIndex((obj) => obj.id === id) ? true : false;
+async function isIdExist(id, fileData) {
+  fileData.persons.findIndex((obj) => obj.id === id) ? true : false;
 }
 
 personsRouter.get("/", async (req, res) => {
@@ -33,9 +29,18 @@ personsRouter.delete("/:id", async (req, res) => {
   const fileRoot = __dirname.split("routes")[0];
   const fileData = await dataBaseFile(fileRoot);
   const id = Number(req.params.id);
-  const index = fileData.findIndex((obj) => obj.id === id);
-  index ? fileData.splice(index, 1) : console.log("s");
+  const index = fileData.persons.findIndex((obj) => obj.id === id);
+  console.log(index);
+  index || index === 0 ? fileData.persons.splice(index, 1) : console.log("s");
   await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
+});
+
+personsRouter.get("/:id", async (req, res) => {
+  const fileRoot = __dirname.split("routes")[0];
+  const fileData = await dataBaseFile(fileRoot);
+  const id = Number(req.params.id);
+  const obj = fileData.persons.find((obj) => obj.id === id);
+  obj ? res.send(obj) : res.status(404).send();
 });
 
 personsRouter.post("/", async (req, res) => {
@@ -45,11 +50,11 @@ personsRouter.post("/", async (req, res) => {
   if (!obj.name) {
     res.status(400).send("cannot add without name");
   }
-  if (await isNameExist(obj.name)) {
-    res.status(403).send("name is not available");
+  if (isNameExist(obj.name, fileData)) {
+    res.status(409).send("name is not available");
   }
   obj.id = generateId();
-  fileData.push(obj);
+  fileData.persons.push(obj);
   await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
 });
 

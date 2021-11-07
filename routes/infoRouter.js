@@ -12,18 +12,10 @@ const dataBaseFile = async (fileRoot) =>
 async function amountPeople() {
   const fileRoot = __dirname.split("routes")[0];
   const fileData = await dataBaseFile(fileRoot);
-  return fileData.length;
+  return fileData.persons.length;
 }
 
 infoRouter.get("/", async (req, res) => {
   const time = moment().format("dddd,MMMM Do YYYY, h:mm:ss a");
   res.json(`phonebook has info for ${await amountPeople()} people ${time}`);
-});
-
-infoRouter.get("/:id", async (req, res) => {
-  const fileRoot = __dirname.split("routes")[0];
-  const fileData = await dataBaseFile(fileRoot);
-  const id = Number(req.params.id);
-  const obj = fileData.find((obj) => obj.id === id);
-  obj ? res.send(obj) : res.status(404).send();
 });
