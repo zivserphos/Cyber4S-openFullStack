@@ -10,9 +10,8 @@ const morganHandler = require("./handlers/morgan");
 
 app.use(express.json());
 
-app.use(morganHandler);
 app.use(
-  "/",
+  morganHandler,
   morgan(":method :url :status :res[content-length] - :response-time ms :body")
 );
 
