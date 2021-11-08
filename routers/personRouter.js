@@ -69,19 +69,5 @@ personRouter.post("/", async (request, response) => {
   }
 });
 
-// personsRouter.post("/", async (req, res) => {
-//   const fileRoot = __dirname.split("routes")[0];
-//   const fileData = await dataBaseFile(fileRoot);
-//   const obj = req.body;
-//   if (!obj.name) {
-//     res.status(400).send("cannot add without name");
-//   }
-//   if (await isNameExist(obj.name)) {
-//     res.status(403).send("name is not available");
-//   }
-//   obj.id = generateId();
-//   fileData.push(obj);
-//   await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
-// });
 
 module.exports = personRouter;

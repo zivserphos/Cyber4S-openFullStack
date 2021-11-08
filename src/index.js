@@ -9,15 +9,15 @@ async function renderPhoneBook(persons) {
     for (let person of persons) {
      
 // rightdiv build
-      
       const callIcon = createElement("i", [], ["fas fa-phone"]);
       const deleteIcon = createElement("i", [], ["fas fa-minus-circle"]);
-      const callBtn = createElement("button", [callIcon], ["button-call"]);
+      const callBtn = createElement("button", [callIcon], ["button-call"],{"data-toggle":"modal", "data-target":"#callPersonModal","data-number":`${person.number}`, "data-name":`${person.name}`},
+      {"click":onCallClick});
       const deleteBtn = createElement("button",[deleteIcon],["button-delete"],{"data-id":person.id},{"click":deletePhone});
-      const rightDiv = createElement("div", [callBtn, deleteBtn]);
+      const rightDiv = createElement("div", [callBtn, deleteBtn],[]);
     //   left div build
-      const span = createElement("span", [person.number]);
-      const a = createElement("a", [person.name, span]);
+      const span = createElement("span", [person.number],[]);
+      const a = createElement("a", [person.name, span],);
       const leftDiv = createElement("div", [a]);
       const li = createElement("li", [leftDiv,rightDiv], [], {}, {});
       phoneBook.append(li);
@@ -25,11 +25,21 @@ async function renderPhoneBook(persons) {
   } catch (error) {}
 }
 
+function sortArray(array){
+  array.sort(function(a, b){
+    if(a.name.toLowerCase()< b.name.toLowerCase()) { return -1; }
+    if(a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
+    return 0;
+})
+
+}
 
 async function getDataBase() {
   const response = await axios.get(`${baseUrl}api/persons`);
   const persons = response.data;
-  console.log(persons);
+  sortArray(persons)
+  // sort by alphabetic order
+  console.log(persons)
   renderPhoneBook(persons);
 }
 getDataBase();
@@ -55,6 +65,24 @@ function createElement(
     element.addEventListener(event, eventListeners[event]);
   return element;
 }
+
+function onCallClick(event) {
+  if(event.target.tagName==="I" && event.target.parentElement
+  .classList.contains("button-call")){
+    document.querySelector("#callPersonTitle").textContent = event.target.parentElement
+    .dataset.name;
+    document.querySelector("#callPersonBody").textContent = `Calling number ${event.target.parentElement
+      .dataset.number}`;
+  
+  } else if(event.target.classList.contains("button-call")){
+    document.querySelector("#callPersonTitle").textContent = event.target.dataset.name;
+    document.querySelector("#callPersonBody").textContent = `Calling number ${event.target.dataset.number}`;
+  }else{
+    return;
+  }
+ 
+}
+
 
 
 
