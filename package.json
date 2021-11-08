@@ -10,7 +10,9 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.14"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
