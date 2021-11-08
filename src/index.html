@@ -2,11 +2,133 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
         <title>Webpack App</title>
     </head>
     <body>
-        <h1>Hello world!</h1>
-        <h2>Tip: Check your console</h2>
+        <header>
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">Phone Book</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <li class="nav-item active"></li>
+                <a class="nav-item nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item active"></li>
+                <a class="nav-item nav-link active" href="#">Add Content</a>
+            </li>
+            <li class="nav-item active"></li>
+                <a class="nav-item nav-link active" href="#">Delete Content</a>
+            </li>
+            <li class="nav-item active"></li>
+                <a class="nav-item nav-link active" href="#">Call >></a>
+            </li>
+        </div>
+      </div>
+              </nav>
+        </header>
+        <main>
+            <div>
+                <div id="main" role="main">
+ 
+                    <div class="element custom">
+ 
+                      <div class="element-header">
+                        <input id="search" type="text" name="s" value="" placeholder="search" autocomplete="off">
+                        <h2>Cyber4s Contacts</h2>
+                      </div>
+ 
+                      <div class="element-content">
+ 
+                        <ul class="list">
+                          <li id="index-A" data-group="work">
+                            <a href="#">Amy Laudrie<span>amylaudrie@gmail.com</span></a>
+                            <button class="button-33" role="button"><i class="fas fa-phone"></i></button>
+                            <button class="button-34" role="button"><i class="fas fa-trash-alt"></i></button>
+                          </li>
+                          <li data-group="family">
+                            <a href="#">April Meiny<span>aprilmeiny@mail.com</span></a>
+                          </li>
+                          <li id="index-B" data-group="work">
+                            <a href="#">Benny Iridos<span>benyiridos@mail.com</span></a>
+                          </li>
+                          <li data-group="work">
+                            <a href="#">Bill Doe<span>benyiridos@mail.com</span></a>
+                          </li>
+                          <li id="index-C" data-group="friends">
+                            <a href="#">Clark Graver<span>clarkgraver@mail.com</span></a>
+                          </li>
+                          <li id="index-D" data-group="friends">
+                            <a href="#">Danny Perie<span>dannyperie@mail.com</span></a>
+                          </li>
+                          <li id="index-J" data-group="family">
+                            <a href="#">John Doe <span>johndoe@mail.com</span></a>
+                          </li>
+                          <li id="index-L" data-group="work">
+                            <a href="#">Lucy Fer<span>lucyfer@mail.com</span></a>
+                          </li>
+                          <li id="index-M" data-group="work">
+                            <a href="#">Megan Rize<span>meganrize@mail.com</span></a>
+                          </li>
+                          <li data-group="friends">
+                            <a href="#">Mike Ferg<span>mikeferg@mail.com</span></a>
+                          </li>
+                          <li>
+                            <a href="#" class="add-new">+ Add new contact</a>
+                          </li>
+                        </ul>
+ 
+                        <div class="element-sidebar">
+                          <a href="#index-#">#</a>
+                          <a href="#index-A">A</a>
+                          <a href="#index-B">B</a>
+                          <a href="#index-C">C</a>
+                          <a href="#index-D">D</a>
+                          <a href="#index-E">E</a>
+                          <a href="#index-F">F</a>
+                          <a href="#index-G">G</a>
+                          <a href="#index-H">H</a>
+                          <a href="#index-I">I</a>
+                          <a href="#index-J">J</a>
+                          <a href="#index-K">K</a>
+                          <a href="#index-L">L</a>
+                          <a href="#index-M">M</a>
+                          <a href="#index-N">N</a>
+                          <a href="#index-O">O</a>
+                          <a href="#index-P">P</a>
+                          <a href="#index-Q">Q</a>
+                          <a href="#index-R">R</a>
+                          <a href="#index-S">S</a>
+                          <a href="#index-T">T</a>
+                          <a href="#index-U">U</a>
+                          <a href="#index-V">V</a>
+                          <a href="#index-W">W</a>
+                          <a href="#index-X">X</a>
+                          <a href="#index-Y">Y</a>
+                          <a href="#index-Z">Z</a>
+                        </div>
+ 
+                      </div>
+ 
+                    </div>
+ 
+                  </div>
+            </div>
+            <div>
+                <img id = "background" src="./images/phoneBook.jpeg" class="img-fluid" alt="Responsive image">
+            </div>
+        </main>​
+        <footer></footer>
+ 
+ 
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ 
     </body>
-    
+ 
 </html>
