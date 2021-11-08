@@ -15,7 +15,7 @@ async function isNameExist(name) {
       return true;
     }
   }
-  console.log("false");
+  
   return false;
 }
 
@@ -29,7 +29,7 @@ personRouter.get("/:id", async (request, response) => {
   
   const id = Number(request.params.id);
   const note = persons.find((person) => person.id === id);
-  console.log(note);
+ 
   if (note) {
     response.send(note);
   } else {
@@ -47,7 +47,7 @@ personRouter.delete("/:id", async (req, res) => {
   const id = Number(req.params.id);
   const index = fileData.findIndex((obj) => obj.id === id);
   
-  index || index === 0 ? fileData.splice(index, 1) : console.log("s");
+  index || index === 0 ? fileData.splice(index, 1) : a.log("s");
   
   await fs.writeFile("./db.json", JSON.stringify(fileData));
   res.send("user was deleted successfully")
@@ -62,11 +62,11 @@ personRouter.post("/", async (request, response) => {
 
   if (person.name) {
     if (await isNameExist(person.name)) {
-      console.log("notgood");
+      
       response.status(404).end();
     } else {
       database.push(person);
-      console.log(database);
+      
       fs.writeFile("./db.json", JSON.stringify(database));
       response.json(person);
     }

@@ -120,6 +120,32 @@ function removeChildren(elem) {
   while(elem.firstElementChild) elem.removeChild(elem.firstElementChild)
 }
 
+// info
+document.getElementById('info1').addEventListener('mouseover', mouseoverInfoHandler);
+async function mouseoverInfoHandler(e) {
+    const infoDiv = document.querySelector('.info-div');
+    infoDiv.classList.remove("display-none");
+    const phoneBookInfo = await getPhoneBookInfo();
+    console.log(phoneBookInfo);
+    infoDiv.append(phoneBookInfo);
+    const left = e.pageX;
+    const top = e.pageY;
+    const divHeight = infoDiv.offsetHeight;
+    infoDiv.style.left = left - 100 + "px";
+    infoDiv.style.top = top - (divHeight / 2) - 40 + "px";
+    e.target.addEventListener('mouseout', mouseoutInfoHandler);
+}
+function mouseoutInfoHandler(e) {
+  const infoDiv = document.querySelector(".info-div");
+  infoDiv.classList.add("display-none");
+  while(infoDiv.firstChild) infoDiv.removeChild(infoDiv.firstChild);
+  e.target.removeEventListener('mouseout', mouseoutInfoHandler);
+}
+async function getPhoneBookInfo() {
+  const response = await axios.get(`http://localhost:3001/info`);
+  return response.data;
+}
+
 
 
 

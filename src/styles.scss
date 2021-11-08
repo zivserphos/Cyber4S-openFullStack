@@ -298,3 +298,22 @@ main .leftDiv {
   transform: scale(0.8) rotate(-1deg);
 }
 
+// info icon
+.fa-info-circle {
+  color: black;
+  cursor: pointer;
+  float: right;
+  font-size: 1.35rem;
+  padding-inline: 0.5em;
+}
+.display-none {
+display: none;
+}
+.info-div {
+position:absolute;
+transform:translate(-50%,-50%);
+border: 1px solid black;
+background: rgb(196, 196, 196);
+z-index: 1;
+padding: 1em;
+}
