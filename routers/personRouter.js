@@ -33,14 +33,25 @@ personRouter.get("/:id", (request, response) => {
     response.status(404).end();
   }
 });
-personRouter.delete("/:id", (request, response) => {
-  const id = Number(request.params.id);
-  persons = persons.filter((person) => person.id !== id);
 
-  response.status(204).end();
+async function dataBaseFile(){
+  const database = JSON.parse(await fs.readFile("db.json", "utf-8"));
+  return database;
+}
+personRouter.delete("/:id", async (req, res) => {
+  const fileData = await dataBaseFile();
+  const id = Number(req.params.id);
+  const index = fileData.findIndex((obj) => obj.id === id);
+  
+  index || index === 0 ? fileData.splice(index, 1) : console.log("s");
+  
+  await fs.writeFile("./db.json", JSON.stringify(fileData));
+  res.send("user was deleted successfully")
+  res.end();
 });
+
 personRouter.post("/", async (request, response) => {
-  const database = JSON.parse((await fs.readFile("db.json")).toString());
+  const database = JSON.parse(await fs.readFile("db.json", "utf-8"));
 
   const person = request.body;
   person.id = getRandomInt(999);

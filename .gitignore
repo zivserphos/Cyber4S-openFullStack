@@ -22,10 +22,13 @@ requests
 
 
 
-    /* CSS */
+   /* CSS */
 .button-33 {
   background-color: #d1f8df;
   border-radius: 10px;
+  transform: scale(0.7);
+  position: absolute;
+  right: 25%;
   box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
     rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
     rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,
@@ -55,6 +58,9 @@ requests
 .button-34 {
   background-color: #f3b7b7;
   border-radius: 10px;
+  transform: scale(0.7);
+  position: absolute;
+  right: 5%;
   box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
     rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
     rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,

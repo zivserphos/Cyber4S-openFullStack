@@ -4,6 +4,7 @@
   "description": "In this repository we are going to particpating work in the openFullStack platform",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.24.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "moment": "^2.29.1",

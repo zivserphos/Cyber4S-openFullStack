@@ -33,7 +33,7 @@ body {
 }
 
 .element.custom {
-  width: 300px;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -156,8 +156,11 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.element .list li[data-group] {
+.element .list li {
   border-left: 3px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .element .list li[data-group="friends"] {
   border-left-color: #bdcb7f;
@@ -222,11 +225,21 @@ main {
   display: flex;
 }
 
+main .rightDiv {
+  width: 60%;
+}
+
+main .leftDiv {
+  width: 40%;
+}
+
 // buttons
 /* CSS */
-.button-33 {
+.button-call {
   background-color: #d1f8df;
   border-radius: 10px;
+  transform: scale(0.7);
+
   box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
     rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
     rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,
@@ -246,16 +259,18 @@ main {
   touch-action: manipulation;
 }
 
-.button-33:hover {
+.button-call:hover {
   box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
     rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
     rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,
     rgba(46, 49, 47, 0.2) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
+  transform: scale(0.8) rotate(-1deg);
 }
-.button-34 {
+.button-delete {
   background-color: #f3b7b7;
   border-radius: 10px;
+  transform: scale(0.7);
+
   box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
     rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
     rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,
@@ -275,10 +290,10 @@ main {
   touch-action: manipulation;
 }
 
-.button-34:hover {
+.button-delete:hover {
   box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
     rgba(46, 49, 47, 0.35) 0 1px 2px, rgba(46, 49, 47, 0.35) 0 2px 4px,
     rgba(46, 49, 47, 0.35) 0 4px 8px, rgba(46, 49, 47, 0.35) 0 8px 16px,
     rgba(46, 49, 47, 0.35) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
+  transform: scale(0.8) rotate(-1deg);
 }
