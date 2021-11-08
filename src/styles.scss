@@ -33,7 +33,8 @@ body {
 }
 
 .element.custom {
-  width: 300px;
+  min-width: 300px;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -156,7 +157,10 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.element .list li[data-group] {
+.element .list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-left: 3px solid #ddd;
 }
 .element .list li[data-group="friends"] {
@@ -220,4 +224,80 @@ body {
 
 main {
   display: flex;
+}
+
+main .rightDiv {
+  width: 60%;
+}
+
+main .leftDiv {
+  width: 40%;
+}
+
+.fa-info-circle {
+  color: black;
+  cursor: pointer;
+  float: right;
+  font-size: 1.35rem;
+  padding-inline: 0.5em;
+}
+
+.button-delete {
+  background-color: #f3b7b7;
+  border-radius: 10px;
+  transform: scale(0.7);
+  box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
+    rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
+    rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,
+    rgba(46, 49, 47, 0.2) 0 16px 32px;
+  color: rgb(216, 31, 31);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-delete:hover {
+  box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
+    rgba(46, 49, 47, 0.35) 0 1px 2px, rgba(46, 49, 47, 0.35) 0 2px 4px,
+    rgba(46, 49, 47, 0.35) 0 4px 8px, rgba(46, 49, 47, 0.35) 0 8px 16px,
+    rgba(46, 49, 47, 0.35) 0 16px 32px;
+  transform: scale(0.8) rotate(-1deg);
+}
+
+.button-call {
+  background-color: #d1f8df;
+  border-radius: 10px;
+  transform: scale(0.7);
+  box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
+    rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
+    rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,
+    rgba(46, 49, 47, 0.2) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-call:hover {
+  box-shadow: rgba(46, 49, 47, 0.2) 0 -25px 18px -14px inset,
+    rgba(46, 49, 47, 0.2) 0 1px 2px, rgba(46, 49, 47, 0.2) 0 2px 4px,
+    rgba(46, 49, 47, 0.2) 0 4px 8px, rgba(46, 49, 47, 0.2) 0 8px 16px,
+    rgba(46, 49, 47, 0.2) 0 16px 32px;
+  transform: scale(0.8) rotate(-1deg);
 }

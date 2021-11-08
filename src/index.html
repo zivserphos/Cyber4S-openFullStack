@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
         <title>Webpack App</title>
     </head>
     <body>
+
         <header>
             <nav class="navbar navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">Phone Book</a>
@@ -32,7 +33,7 @@
               </nav>
         </header>
         <main>
-            <div>
+            <div class="leftDiv">
                 <div id="main" role="main">
  
                     <div class="element custom">
@@ -40,44 +41,14 @@
                       <div class="element-header">
                         <input id="search" type="text" name="s" value="" placeholder="search" autocomplete="off">
                         <h2>Cyber4s Contacts</h2>
+                        <i class="fas fa-info-circle" id="info" data-container="body" data-toggle="popover" data-placement="right">
+                        </i>
                       </div>
  
                       <div class="element-content">
  
-                        <ul class="list">
-                          <li id="index-A" data-group="work">
-                            <a href="#">Amy Laudrie<span>amylaudrie@gmail.com</span></a>
-                          </li>
-                          <li data-group="family">
-                            <a href="#">April Meiny<span>aprilmeiny@mail.com</span></a>
-                          </li>
-                          <li id="index-B" data-group="work">
-                            <a href="#">Benny Iridos<span>benyiridos@mail.com</span></a>
-                          </li>
-                          <li data-group="work">
-                            <a href="#">Bill Doe<span>benyiridos@mail.com</span></a>
-                          </li>
-                          <li id="index-C" data-group="friends">
-                            <a href="#">Clark Graver<span>clarkgraver@mail.com</span></a>
-                          </li>
-                          <li id="index-D" data-group="friends">
-                            <a href="#">Danny Perie<span>dannyperie@mail.com</span></a>
-                          </li>
-                          <li id="index-J" data-group="family">
-                            <a href="#">John Doe <span>johndoe@mail.com</span></a>
-                          </li>
-                          <li id="index-L" data-group="work">
-                            <a href="#">Lucy Fer<span>lucyfer@mail.com</span></a>
-                          </li>
-                          <li id="index-M" data-group="work">
-                            <a href="#">Megan Rize<span>meganrize@mail.com</span></a>
-                          </li>
-                          <li data-group="friends">
-                            <a href="#">Mike Ferg<span>mikeferg@mail.com</span></a>
-                          </li>
-                          <li>
-                            <a href="#" class="add-new">+ Add new contact</a>
-                          </li>
+                        <ul class="list" id = "phoneBook">
+                          
                         </ul>
  
                         <div class="element-sidebar">
@@ -116,7 +87,7 @@
  
                   </div>
             </div>
-            <div>
+            <div class = "rightDiv">
                 <img id = "background" src="./images/background.jpeg" class="img-fluid" alt="Responsive image">
             </div>
         </main>​
