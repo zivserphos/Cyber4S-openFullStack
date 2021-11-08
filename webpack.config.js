@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV == "production";
 const stylesHandler = "style-loader";
 
 const config = {
-  entry: { index: "./src/index.js", info: "./src/htmlPages/info.js" },
+  entry: { index: "./src/index.js", addContact: "./src/htmlPages/addContact.js" },
   output: {
     path: path.resolve(__dirname, "dist"),
     assetModuleFilename: "images/[name][ext][query]",
@@ -18,6 +18,7 @@ const config = {
   devServer: {
     open: true,
     host: "localhost",
+    port:3001
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -26,9 +27,9 @@ const config = {
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      filename: "info.html",
-      template: "./src/index.html",
-      chunks: ["info"],
+      filename: "addContact.html",
+      template: "./src/htmlPages/addContact.html",
+      chunks: ["addContact"],
     }),
 
     // Add your plugins here
