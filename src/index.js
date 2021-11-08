@@ -1,7 +1,3 @@
-// import "./styles.scss";
-// import "./images/background.jpeg";
-// import axios from "axios";
-
 // console.log("Hello World!");
 
 // // async function deletePhone(event) {
@@ -9,24 +5,34 @@
 // //   const response = await axios.delete(`api/persons/${event.target.dataset.id}`);
 // //   alert(response);
 // // }
+const popOverTriggerList = [].slice.call(
+  document.querySelectorAll('[data-toggle = "popover"]')
+);
+const popOverList = popOverTriggerList.map(function (popOverTriger) {
+  console.log("fg");
+  return new boostrap.Popover(popOverTriger);
+});
 
-// async function phoneBookInfo(event) {
-//   event.preventDefault();
-//   const response = await axios.get(`http://localhost:3001/info`);
-//   event.target.setAttribute("data-content", response.data);
-// }
+async function phoneBookInfo(event) {
+  event.preventDefault();
+  //console.log("shit");
+  const response = await axios.get(`http://localhost:3001/info`);
+  event.target.setAttribute("data-content", response.data);
+  console.log(event.target.dataset.toggle());
+}
 
 // document
 //   .querySelector(".button-delete")
 //   .addEventListener("click", (event) => deletePhone(event));
 
-// document
-//   .getElementById("info")
-//   .addEventListener("click", (event) => phoneBookInfo(event));
+document
+  .getElementById("info")
+  .addEventListener("click", (event) => phoneBookInfo(event));
 
 import "./styles.scss";
 import "./images/background.jpeg";
 import axios from "axios";
+const util = require("util");
 
 const baseUrl = "http://localhost:3001/";
 async function renderPhoneBook(persons) {
@@ -59,6 +65,7 @@ async function getDataBase() {
   const persons = response.data;
   console.log(persons);
   renderPhoneBook(persons);
+  return persons;
 }
 getDataBase();
 

@@ -23,6 +23,7 @@
   "homepage": "https://github.com/zivserphos/Cyber4S-openFullStack#readme",
   "dependencies": {
     "@babel/runtime": "^7.16.0",
+    "@popperjs/core": "^2.10.2",
     "axios": "^0.24.0",
     "boostrap": "^2.0.0",
     "cors": "^2.8.5",
@@ -30,6 +31,7 @@
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.14",
+    "popper.js": "^1.16.1",
     "util": "^0.12.4"
   },
   "devDependencies": {

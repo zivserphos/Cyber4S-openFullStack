@@ -17,9 +17,9 @@ app.use(
 
 app.use("/", express.static(path.resolve(`./dist`)));
 
-app.get("/addcontact" , (req ,res) => {
-    res.sendFile("/dist/infoPage.html")
-})
+app.get("/infoPage", (req, res) => {
+  res.sendFile(__dirname + "/dist/infoPage.html");
+});
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/dist/index.html");
 });
