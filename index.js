@@ -3,8 +3,14 @@ const app = express();
 const personRouter = require("./routers/personRouter");
 const infoRouter = require("./routers/infoRouter");
 const morgan = require("morgan");
+const path = require("path");
 
 app.use(express.json());
+
+app.use(express.static(path.resolve("./dist")));
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve("./dist/index.html"));
+});
 
 morgan.token("body", (req, res) => JSON.stringify(req.body));
 app.use(
