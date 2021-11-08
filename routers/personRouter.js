@@ -24,14 +24,18 @@ personRouter.get("/", async (request, response) => {
   response.json(database);
 });
 
-personRouter.get("/:id", (request, response) => {
+personRouter.get("/:id", async (request, response) => {
+  const persons = JSON.parse(await fs.readFile("db.json", "utf-8"));
+  
   const id = Number(request.params.id);
   const note = persons.find((person) => person.id === id);
+  console.log(note);
   if (note) {
-    response.json(note);
+    response.send(note);
   } else {
     response.status(404).end();
   }
+
 });
 
 async function dataBaseFile(){
