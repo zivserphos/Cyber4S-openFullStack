@@ -1,7 +1,7 @@
 import styles from "./styles.scss";
 import phoneBook from "./images/background.jpeg";
 import axios from "axios";
-const baseUrl = "";
+const baseUrl = "http://localhost:3001/";
 
 async function openContactInfo(event) {
   const id = event.target.dataset.id;
@@ -23,7 +23,7 @@ async function renderPhoneBook(persons) {
         {
           "data-container": "body",
           "data-toggle": "popover",
-          "data-id": `${person.id}`,
+          "data-id": `${person._id}`,
         },
         { click: openContactInfo }
       );
@@ -44,7 +44,7 @@ async function renderPhoneBook(persons) {
         "button",
         [deleteIcon],
         ["button-delete"],
-        { "data-id": person.id },
+        { "data-id": person._id },
         { click: deletePhone }
       );
       const rightDiv = createElement("div", [info, callBtn, deleteBtn], []);
@@ -159,19 +159,21 @@ function removeChildren(elem) {
 // info
 document
   .getElementById("info1")
-  .addEventListener("mouseover", mouseoverInfoHandler);
-async function mouseoverInfoHandler(e) {
+  .addEventListener("click", mouseoverInfoHandler);
+  async function mouseoverInfoHandler(e) {
   const infoDiv = document.querySelector(".info-div");
-  infoDiv.classList.remove("display-none");
+  infoDiv.style.display = "block"
   const phoneBookInfo = await getPhoneBookInfo();
-  console.log(phoneBookInfo);
   infoDiv.append(phoneBookInfo);
   const left = e.pageX;
   const top = e.pageY;
   const divHeight = infoDiv.offsetHeight;
   infoDiv.style.left = left - 100 + "px";
   infoDiv.style.top = top - divHeight / 2 - 40 + "px";
-  e.target.addEventListener("mouseout", mouseoutInfoHandler);
+  setTimeout(() => {
+    infoDiv.style.display = "none"
+  } , 3000)
+  //e.target.addEventListener("mouseout", mouseoutInfoHandler);
 }
 function mouseoutInfoHandler(e) {
   const infoDiv = document.querySelector(".info-div");
