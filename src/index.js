@@ -1,7 +1,7 @@
 import styles from "./styles.scss";
 import phoneBook from "./images/background.jpeg";
 import axios from "axios";
-const baseUrl = "http://localhost:3001/";
+const baseUrl = "/";
 
 async function openContactInfo(event) {
   const id = event.target.dataset.id;
