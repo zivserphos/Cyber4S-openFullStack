@@ -10,7 +10,6 @@ const morganHandler = require("./handlers/morgan");
 const mongoose = require("mongoose");
 const url =
   "mongodb+srv://ziv_serphos1:123456zain@cluster0.zcgdd.mongodb.net/phonebook?retryWrites=true&w=majority";
-
 mongoose.connect(url);
 
 const db = mongoose.connection;
