@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const url =
   "mongodb+srv://ziv_serphos1:123456zain@cluster0.zcgdd.mongodb.net/phonebook?retryWrites=true&w=majority";
 mongoose.connect(url);
+const configRequire = require("dotenv");
 
 const db = mongoose.connection;
 
@@ -32,7 +33,7 @@ app.use("/api/persons", personsRouter);
 app.use("/info", infoRouter);
 
 app.get("/addContact", (req, res) => {
-  res.sendFile(path.resolve("./dist/infoPage.html"));
+  res.sendFile(path.resolve("./dist/InfoPage.html"));
 });
 app.get("/", (req, res) => {
   res.sendFile(path.resolve("./dist/index.html"));
