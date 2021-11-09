@@ -92,7 +92,8 @@ body {
   line-height: 22px;
   text-indent: 300px;
 }
-.element .element-header input:focus + * {
+.element .element-header input:focus + *,
+.element .element-header input:focus + * + * {
   display: none;
 }
 .element .element-header input:focus {

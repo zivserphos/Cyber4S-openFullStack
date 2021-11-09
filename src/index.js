@@ -160,9 +160,9 @@ function removeChildren(elem) {
 document
   .getElementById("info1")
   .addEventListener("click", mouseoverInfoHandler);
-  async function mouseoverInfoHandler(e) {
+async function mouseoverInfoHandler(e) {
   const infoDiv = document.querySelector(".info-div");
-  infoDiv.style.display = "block"
+  infoDiv.style.display = "block";
   const phoneBookInfo = await getPhoneBookInfo();
   infoDiv.append(phoneBookInfo);
   const left = e.pageX;
@@ -171,17 +171,21 @@ document
   infoDiv.style.left = left - 100 + "px";
   infoDiv.style.top = top - divHeight / 2 - 40 + "px";
   setTimeout(() => {
-    infoDiv.style.display = "none"
-  } , 3000)
-  //e.target.addEventListener("mouseout", mouseoutInfoHandler);
+    infoDiv.textContent = "";
+    infoDiv.style.display = "none";
+  }, 3000);
 }
-function mouseoutInfoHandler(e) {
-  const infoDiv = document.querySelector(".info-div");
-  infoDiv.classList.add("display-none");
-  while (infoDiv.firstChild) infoDiv.removeChild(infoDiv.firstChild);
-  e.target.removeEventListener("mouseout", mouseoutInfoHandler);
-}
+
 async function getPhoneBookInfo() {
-  const response = await axios.get(`http://localhost:3001/info`);
+  const response = await axios.get(`${baseUrl}/info`);
   return response.data;
 }
+
+async function addContact() {
+  console.log("request");
+  axios.get(`${baseUrl}addContact`);
+}
+
+document
+  .getElementById("addContact")
+  .addEventListener("click", () => addContact());

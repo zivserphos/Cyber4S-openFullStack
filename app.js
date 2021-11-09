@@ -32,10 +32,10 @@ app.use("/api/persons", personsRouter);
 app.use("/info", infoRouter);
 
 app.get("/addContact", (req, res) => {
-  res.sendFile(__dirname + "/dist/infoPage.html");
+  res.sendFile(path.resolve("./dist/infoPage.html"));
 });
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/dist/index.html");
+  res.sendFile(path.resolve("./dist/index.html"));
 });
 
 app.use("/", errorHandler);
