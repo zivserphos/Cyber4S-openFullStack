@@ -181,11 +181,11 @@ async function getPhoneBookInfo() {
   return response.data;
 }
 
-async function addContact() {
-  console.log("request");
-  axios.get(`${baseUrl}addContact`);
-}
+// async function addContact() {
+//   console.log("request");
+//   axios.get(`${baseUrl}addContact`);
+// }
 
-document
-  .getElementById("addContact")
-  .addEventListener("click", () => addContact());
+// document
+//   .getElementById("addContact")
+//   .addEventListener("click", () => addContact());
