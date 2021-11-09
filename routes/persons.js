@@ -43,31 +43,21 @@ personsRouter.post("/", async (req, res, next) => {
 });
 
 personsRouter.get("/", async (req, res) => {
-  fileRoot = __dirname.split("routes")[0];
-  res.sendFile(`${fileRoot}/data/data.json`);
+  return res.send(await Person.find({}));
 });
 
 personsRouter.delete("/:id", async (req, res) => {
   const id = Number(req.params.id);
-  const fileData = await Person.find({});
-  const response = await Person.collection.deleteOne({ _id: id });
+  const response = await Person.deleteOne({ _id: id });
   if (response.deletedCount === 0) {
-    console.log("delete was not succesful");
+    res.send("delete was not succesful");
   }
-
-  //await Person.collection.deleteOne({ _id: 961 });
-
-  //const index = fileData.persons.findIndex((obj) => obj.id === id);
-  //index || index === 0 ? fileData.persons.splice(index, 1) : console.log("S");
-  //await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
   res.end();
 });
 
 personsRouter.get("/:id", async (req, res) => {
-  const fileRoot = __dirname.split("routes")[0];
-  const fileData = await dataBaseFile(fileRoot);
   const id = Number(req.params.id);
-  const obj = fileData.persons.find((obj) => obj.id === id);
+  const obj = await Person.findOne({ _id: id });
   obj ? res.send(obj) : res.status(404).send();
 });
 

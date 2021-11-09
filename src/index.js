@@ -14,7 +14,7 @@ async function renderPhoneBook(persons) {
   const phoneBook = document.getElementById("phoneBook");
   removeChildren(phoneBook);
   try {
-    for (let person of persons.persons) {
+    for (let person of persons) {
       // rightdiv build
       const callIcon = createElement("i", [], ["fas fa-phone"]);
       // <i class="fas fa-info-circle" id="info" data-container="body" data-toggle="popover" data-placement="right">
@@ -67,7 +67,7 @@ async function renderPhoneBook(persons) {
 }
 
 function sortArray(array) {
-  array.persons.sort(function (a, b) {
+  array.sort(function (a, b) {
     if (a.name.toLowerCase() < b.name.toLowerCase()) {
       return -1;
     }
@@ -145,7 +145,7 @@ async function filterLists(query) {
   console.log(query);
   const persons = await getDataBase();
   const filteredPersons = [];
-  for (const person of persons.persons) {
+  for (const person of persons) {
     const name = person.name.toLowerCase();
     if (name.indexOf(query) !== -1) {
       filteredPersons.push(person);
