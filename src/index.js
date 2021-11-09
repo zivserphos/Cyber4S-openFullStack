@@ -132,17 +132,17 @@ async function searchHandler(e) {
   const searchInput = document.activeElement;
   const query = searchInput.value;
 
-  const persons = await filterLists(query.toLowerCase());
+  const persons = { persons: await filterLists(query.toLowerCase()) };
   renderPhoneBook(persons);
 }
 
 async function filterLists(query) {
+  console.log(query);
   const persons = await getDataBase();
   const filteredPersons = [];
-  for (const person of persons) {
+  for (const person of persons.persons) {
     const name = person.name.toLowerCase();
     if (name.indexOf(query) !== -1) {
-      console.log(name);
       filteredPersons.push(person);
     }
   }
