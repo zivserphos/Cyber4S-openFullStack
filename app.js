@@ -11,7 +11,6 @@ const mongoose = require("mongoose");
 const url =
   "mongodb+srv://ziv_serphos1:123456zain@cluster0.zcgdd.mongodb.net/phonebook?retryWrites=true&w=majority";
 
-app.use(express.json());
 mongoose.connect(url);
 
 const db = mongoose.connection;
@@ -26,7 +25,12 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body")
 );
 
+app.use(express.json());
+
 app.use("/", express.static(path.resolve(`./dist`)));
+
+app.use("/api/persons", personsRouter);
+app.use("/info", infoRouter);
 
 app.get("/addContact", (req, res) => {
   res.sendFile(__dirname + "/dist/infoPage.html");
@@ -35,7 +39,6 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/dist/index.html");
 });
 
-app.use("/api/persons", personsRouter);
-app.use("/info", infoRouter);
+app.use("/", errorHandler);
 
 module.exports = app;

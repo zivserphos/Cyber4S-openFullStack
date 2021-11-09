@@ -13,8 +13,7 @@ function generateId() {
 }
 
 function isNameExist(name, fileData) {
-  const isExist = fileData.findIndex((obj) => obj.name === name);
-  isExist === -1 ? false : true;
+  return fileData.findIndex((obj) => obj.name === name) !== -1;
 }
 
 async function findPerson(id) {
@@ -49,7 +48,7 @@ personsRouter.get("/:id", async (req, res) => {
   obj ? res.send(obj) : res.status(404).send();
 });
 
-personsRouter.post("/", async (req, res) => {
+personsRouter.post("/", async (req, res, next) => {
   const obj = Object.assign({}, req.body);
   const fileData = await Person.find({});
   obj.id = generateId();
@@ -57,33 +56,20 @@ personsRouter.post("/", async (req, res) => {
     throw { status: 400, message: { error: "cannot add without name!" } };
   }
   console.log(obj.name);
+  console.log(isNameExist(obj.name, fileData));
   if (isNameExist(obj.name, fileData)) {
     console.log("Ggg");
-    throw { status: 409, message: { error: "name is not available" } };
+    next({ status: 400, message: { error: "name is not available" } });
   }
   try {
     console.log("im here");
     await createNewPerson(obj.id, obj.name, obj.number);
     res.send("Person added succesfully");
   } catch (err) {
+    //console.log(err);
+    console.log(err.data);
     next({ status: 502, message: { error: "could not succed" } });
   }
-
-  // const fileRoot = __dirname.split("routes")[0];
-  // console.log(req.body);
-  // const fileData = await dataBaseFile(fileRoot);
-  // const obj = req.body;
-  // if (!obj.name) {
-  //   res.status(400).send("cannot add without name!");
-  // }
-  // if (isNameExist(obj.name, fileData)) {
-  //   res.status(409).send("name is not available");
-  // }
-  // obj.id = generateId();
-  // console.log(obj);
-  // fileData.persons.push(obj);
-  // await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
-  // res.end();
 });
 
 module.exports = personsRouter;
