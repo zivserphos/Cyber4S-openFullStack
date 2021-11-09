@@ -1,12 +1,6 @@
 const express = require("express");
 const personsRouter = express.Router();
-const fsAsync = require("fs/promises");
-const path = require("path");
-const util = require("util");
 const Person = require("../mongodb/mongoPerson");
-
-const dataBaseFile = async (fileRoot) =>
-  JSON.parse(await fsAsync.readFile(`${fileRoot}/data/data.json`));
 
 function generateId() {
   return Math.floor(Math.random() * 1000);
@@ -14,14 +8,6 @@ function generateId() {
 
 function isNameExist(name, fileData) {
   return fileData.findIndex((obj) => obj.name === name) !== -1;
-}
-
-async function findPerson(id) {
-  return await Person.find({ _id: id });
-}
-
-async function isIdExist(id, fileData) {
-  fileData.persons.findIndex((obj) => obj.id === id) ? true : false;
 }
 
 personsRouter.post("/", async (req, res, next) => {

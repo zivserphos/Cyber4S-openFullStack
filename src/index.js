@@ -1,7 +1,7 @@
 import styles from "./styles.scss";
 import phoneBook from "./images/background.jpeg";
 import axios from "axios";
-const baseUrl = "http://localhost:3001/";
+const baseUrl = "";
 
 async function openContactInfo(event) {
   const id = event.target.dataset.id;
@@ -15,9 +15,7 @@ async function renderPhoneBook(persons) {
   removeChildren(phoneBook);
   try {
     for (let person of persons) {
-      // rightdiv build
       const callIcon = createElement("i", [], ["fas fa-phone"]);
-      // <i class="fas fa-info-circle" id="info" data-container="body" data-toggle="popover" data-placement="right">
       const info = createElement(
         "i",
         [],
