@@ -19,7 +19,7 @@ async function addContact(event) {
     ) {
       label.innerText = "Loading...";
       console.log("inside the if of add contact");
-      const response = await axios.post("http://localhost:3001/api/persons", {
+      const response = await axios.post("/", {
         name: firstName + " " + lastName,
         number: number,
       });

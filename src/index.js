@@ -180,12 +180,3 @@ async function getPhoneBookInfo() {
   const response = await axios.get(`${baseUrl}/info`);
   return response.data;
 }
-
-// async function addContact() {
-//   console.log("request");
-//   axios.get(`${baseUrl}addContact`);
-// }
-
-// document
-//   .getElementById("addContact")
-//   .addEventListener("click", () => addContact());
