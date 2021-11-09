@@ -47,6 +47,7 @@ personsRouter.get("/:id", async (req, res) => {
 
 personsRouter.post("/", async (req, res) => {
   const fileRoot = __dirname.split("routes")[0];
+  console.log(req.body);
   const fileData = await dataBaseFile(fileRoot);
   const obj = req.body;
   if (!obj.name) {
@@ -56,8 +57,10 @@ personsRouter.post("/", async (req, res) => {
     res.status(409).send("name is not available");
   }
   obj.id = generateId();
+  console.log(obj);
   fileData.persons.push(obj);
   await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
+  res.end();
 });
 
 module.exports = personsRouter;
