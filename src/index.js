@@ -54,7 +54,13 @@ async function renderPhoneBook(persons) {
       const span = createElement("span", [person.number], []);
       const a = createElement("a", [person.name, span]);
       const leftDiv = createElement("div", [a]);
-      const li = createElement("li", [leftDiv, rightDiv], [], {}, {});
+      const li = createElement(
+        "li",
+        [leftDiv, rightDiv],
+        [],
+        { id: `index-${person.name[0].toUpperCase()}` },
+        {}
+      );
       phoneBook.append(li);
     }
   } catch (error) {}
@@ -84,9 +90,8 @@ getDataBase();
 
 async function deletePhone(event) {
   event.target.closest("LI").remove();
-  const response = await axios.delete(
-    `${baseUrl}api/persons/${event.target.dataset.id}`
-  );
+  const id = event.target.closest("BUTTON").dataset.id;
+  await axios.delete(`${baseUrl}api/persons/${id}`);
 }
 
 function createElement(

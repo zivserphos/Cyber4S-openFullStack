@@ -7,8 +7,19 @@ const app = express();
 const path = require("path");
 const morgan = require("morgan");
 const morganHandler = require("./handlers/morgan");
+const mongoose = require("mongoose");
+const url =
+  "mongodb+srv://ziv_serphos1:123456zain@cluster0.zcgdd.mongodb.net/phonebook?retryWrites=true&w=majority";
 
 app.use(express.json());
+mongoose.connect(url);
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+  console.log("Connected successfully");
+});
 
 app.use(
   morganHandler,
