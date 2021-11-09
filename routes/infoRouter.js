@@ -16,6 +16,7 @@ async function amountPeople() {
 }
 
 infoRouter.get("/", async (req, res) => {
+  console.log("sss");
   const time = moment().format("dddd,MMMM Do YYYY, h:mm:ss a");
   res.json(`phonebook has info for ${await amountPeople()} people ${time}`);
 });

@@ -29,10 +29,12 @@ personsRouter.delete("/:id", async (req, res) => {
   const fileRoot = __dirname.split("routes")[0];
   const fileData = await dataBaseFile(fileRoot);
   const id = Number(req.params.id);
+  console.log(id);
   const index = fileData.persons.findIndex((obj) => obj.id === id);
   console.log(index);
-  index || index === 0 ? fileData.persons.splice(index, 1) : console.log("s");
+  index || index === 0 ? fileData.persons.splice(index, 1) : console.log("S");
   await fsAsync.writeFile("./data/data.json", JSON.stringify(fileData));
+  res.end();
 });
 
 personsRouter.get("/:id", async (req, res) => {

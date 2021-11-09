@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* basic stylings ------------------------------------------ */
+
+.container {
+  font-family: "Roboto", sans-serif;
+  width: 600px;
+  margin: 30px auto 0;
+  display: block;
+  background: #fff;
+  padding: 10px 50px 50px;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+h2 small {
+  font-weight: normal;
+  color: #888;
+  display: block;
+}
+.footer {
+  text-align: center;
+}
+.footer a {
+  color: #53b2c8;
+}
+
+/* form starting stylings ------------------------------- */
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+input:focus {
+  outline: none;
+}
+
+/* LABEL ======================================= */
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label,
+input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width: 300px;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+// add contact button
+.button2 {
+  margin-top: 10vh;
+  position: relative;
+  display: inline-block;
+  padding: 30px 61px;
+  border-radius: 4px;
+  color: #2b2a24;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin: 25px;
+  font-family: "Roboto", sans-serif;
+  filter: hue-rotate(0deg);
+  border: 2px solid #8088f7;
+  transition: all 0.1s linear;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid transparent;
+    span {
+      position: absolute;
+      display: block;
+
+      &:nth-child(1) {
+        filter: hue-rotate(0deg);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #3a86ff);
+        animation: animate1 1s linear infinite;
+      }
+      @keyframes animate1 {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
+
+      &:nth-child(2) {
+        filter: hue-rotate(60deg);
+        top: -100%;
+        right: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #3a86ff);
+        animation: animate2 1s linear infinite;
+        animation-delay: 0.25s;
+      }
+
+      @keyframes animate2 {
+        0% {
+          top: -100%;
+        }
+        50%,
+        100% {
+          top: 100%;
+        }
+      }
+      &:nth-child(3) {
+        filter: hue-rotate(120deg);
+        bottom: 0;
+        right: 0;
+        width: 100%;
+
+        background: linear-gradient(270deg, transparent, #3a86ff);
+        animation: animate3 1s linear infinite;
+        animation-delay: 0.5s;
+      }
+      @keyframes animate3 {
+        0% {
+          right: -100%;
+          height: 3px;
+        }
+        50%,
+        100% {
+          height: 2px;
+          right: 100%;
+        }
+      }
+
+      &:nth-child(4) {
+        filter: hue-rotate(300deg);
+        bottom: -100%;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #3a86ff);
+        animation: animate4 1s linear infinite;
+        animation-delay: 0.75s;
+      }
+      @keyframes animate4 {
+        0% {
+          bottom: -100%;
+        }
+        50%,
+        100% {
+          bottom: 100%;
+        }
+      }
+    }
+  }
+}
+
+// add button insdie real button
+
+.resultdiv {
+  font-family: "Roboto", sans-serif;
+  color: #2b2a24;
+
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :hover {
+    opacity: 0.5;
+  }
+}
+
+// info icon
+.fa-info-circle {
+  color: black;
+  cursor: pointer;
+  float: right;
+  font-size: 1.35rem;
+  padding-inline: 0.5em;
+}
