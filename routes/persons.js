@@ -13,6 +13,17 @@ function isNameExist(name, fileData) {
   return fileData.findIndex((obj) => obj.name === name) !== -1;
 }
 
+personsRouter.put("/", async (req, res, next) => {
+  const obj = Object.assign({}, req.body);
+  //const personName = await Person.find({ name: obj.name });
+  try {
+    await updatePersonNumber(obj.name, obj.number);
+    res.send("Person number updated succesfully");
+  } catch (err) {
+    next({ status: 502, message: { error: "could not succed" } });
+  }
+});
+
 personsRouter.post("/", async (req, res, next) => {
   const obj = Object.assign({}, req.body);
   console.log(obj);
@@ -24,11 +35,11 @@ personsRouter.post("/", async (req, res, next) => {
       message: { error: "cannot add without name!" },
     });
   }
-  if (isNameExist(obj.name, fileData)) {
-    return next({ status: 400, message: { error: "name is not available" } });
-  }
   if (obj.token !== secureCode) {
     return next({ status: 400, message: { error: "token Invalid" } });
+  }
+  if (isNameExist(obj.name, fileData)) {
+    return next({ status: 400, message: { error: "name is not available" } });
   }
   try {
     await createNewPerson(obj.id, obj.name, obj.number);
@@ -67,4 +78,8 @@ async function createNewPerson(id, name, number) {
   } catch (error) {
     return false;
   }
+}
+
+async function updatePersonNumber(_name, _number) {
+  await Person.updateOne({ name: _name }, { number: _number });
 }
