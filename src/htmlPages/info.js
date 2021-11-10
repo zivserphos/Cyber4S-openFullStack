@@ -5,23 +5,20 @@ async function addContact(event) {
   event.preventDefault();
   const label = document.getElementById("resultdiv");
   try {
-    console.log("outside if");
     const firstName = document.getElementById("firstName").value;
-    console.log("first");
     const lastName = document.getElementById("lastName").value;
-    console.log("last");
     const number = document.getElementById("number").value;
-    console.log("number");
+    const token = document.getElementById("token").value;
     if (
       validateFirstName(firstName) &&
       validateLastName(lastName) &&
       validateNumber(number)
     ) {
       label.innerText = "Loading...";
-      console.log("inside the if of add contact");
       const response = await axios.post("/api/persons", {
         name: firstName + " " + lastName,
         number: number,
+        token: token,
       });
       label.innerText = `Added ${firstName} ${lastName} Successfuly`;
       setTimeout(() => {

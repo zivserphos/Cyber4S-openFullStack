@@ -1,6 +1,9 @@
 const express = require("express");
 const personsRouter = express.Router();
 const Person = require("../mongodb/mongoPerson");
+const dotenv = require("dotenv");
+dotenv.config();
+const secureCode = process.env.SECURE_CODE;
 
 function generateId() {
   return Math.floor(Math.random() * 1000);
@@ -19,6 +22,9 @@ personsRouter.post("/", async (req, res, next) => {
   }
   if (isNameExist(obj.name, fileData)) {
     next({ status: 400, message: { error: "name is not available" } });
+  }
+  if (obj.token !== secureCode) {
+    next({ status: 400, message: { error: "token Invalid" } });
   }
   try {
     await createNewPerson(obj.id, obj.name, obj.number);

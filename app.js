@@ -8,10 +8,11 @@ const path = require("path");
 const morgan = require("morgan");
 const morganHandler = require("./handlers/morgan");
 const mongoose = require("mongoose");
-const url =
-  "mongodb+srv://ziv_serphos1:123456zain@cluster0.zcgdd.mongodb.net/phonebook?retryWrites=true&w=majority";
+const dotenv = require("dotenv").config();
+const password = process.env.PASSWORD;
+
+const url = `mongodb+srv://ziv_serphos1:${password}@cluster0.zcgdd.mongodb.net/phonebook?retryWrites=true&w=majority`;
 mongoose.connect(url);
-const configRequire = require("dotenv");
 
 const db = mongoose.connection;
 
