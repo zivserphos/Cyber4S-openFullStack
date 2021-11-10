@@ -15,6 +15,7 @@ function isNameExist(name, fileData) {
 
 personsRouter.post("/", async (req, res, next) => {
   const obj = Object.assign({}, req.body);
+  console.log(obj);
   const fileData = await Person.find({});
   obj.id = generateId();
   if (!obj.name) {
