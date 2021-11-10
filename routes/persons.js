@@ -19,13 +19,16 @@ personsRouter.post("/", async (req, res, next) => {
   const fileData = await Person.find({});
   obj.id = generateId();
   if (!obj.name) {
-    next({ status: 400, message: { error: "cannot add without name!" } });
+    return next({
+      status: 400,
+      message: { error: "cannot add without name!" },
+    });
   }
   if (isNameExist(obj.name, fileData)) {
-    next({ status: 400, message: { error: "name is not available" } });
+    return next({ status: 400, message: { error: "name is not available" } });
   }
   if (obj.token !== secureCode) {
-    next({ status: 400, message: { error: "token Invalid" } });
+    return next({ status: 400, message: { error: "token Invalid" } });
   }
   try {
     await createNewPerson(obj.id, obj.name, obj.number);

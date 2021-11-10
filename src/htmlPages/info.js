@@ -14,21 +14,29 @@ async function addContact(event) {
       validateLastName(lastName) &&
       validateNumber(number)
     ) {
+      label.style.display = "block";
       label.innerText = "Loading...";
       const response = await axios.post("/api/persons", {
         name: firstName + " " + lastName,
         number: number,
         token: token,
       });
+      console.log(firstName, lastName);
       label.innerText = `Added ${firstName} ${lastName} Successfuly`;
       setTimeout(() => {
+        label.style.display = "none";
         label.innerText = "";
       }, 3 * 1000);
     }
   } catch (error) {
-    label.innerText = "";
-    console.log(error);
-    return error;
+    label.style.display = "none";
+    const errorDiv = document.getElementById("errordiv");
+    errorDiv.style.display = "block";
+    errorDiv.innerText = `${error.response.data.error}`;
+    setTimeout(() => {
+      errorDiv.style.display = "none";
+      errorDiv.innerText = "";
+    }, 3 * 1000);
   }
 }
 
