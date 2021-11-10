@@ -159,8 +159,9 @@ function removeChildren(elem) {
 // info
 document
   .getElementById("info1")
-  .addEventListener("click", mouseoverInfoHandler);
-async function mouseoverInfoHandler(e) {
+  .addEventListener("click", mouseClickInfoHandler);
+async function mouseClickInfoHandler(e) {
+  console.log("im here");
   const infoDiv = document.querySelector(".info-div");
   infoDiv.style.display = "block";
   const phoneBookInfo = await getPhoneBookInfo();
@@ -168,7 +169,7 @@ async function mouseoverInfoHandler(e) {
   const left = e.pageX;
   const top = e.pageY;
   const divHeight = infoDiv.offsetHeight;
-  infoDiv.style.left = left - 100 + "px";
+  infoDiv.style.left = left - 50 + "px";
   infoDiv.style.top = top - divHeight / 2 - 40 + "px";
   setTimeout(() => {
     infoDiv.textContent = "";
@@ -177,6 +178,8 @@ async function mouseoverInfoHandler(e) {
 }
 
 async function getPhoneBookInfo() {
-  const response = await axios.get(`${baseUrl}/info`);
+  console.log("gggggggggggg");
+  const response = await axios.get(`${baseUrl}info`);
+  console.log("gggggggggggg");
   return response.data;
 }

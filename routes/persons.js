@@ -50,6 +50,7 @@ personsRouter.post("/", async (req, res, next) => {
 });
 
 personsRouter.get("/", async (req, res) => {
+  console.log("ggg");
   return res.send(await Person.find({}));
 });
 
