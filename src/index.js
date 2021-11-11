@@ -1,7 +1,7 @@
 import styles from "./styles.scss";
 import phoneBook from "./images/background.jpeg";
 import axios from "axios";
-const baseUrl = "http://localhost:3001/";
+const baseUrl = "/";
 
 async function openContactInfo(event) {
   const id = event.target.dataset.id;
@@ -14,10 +14,8 @@ async function renderPhoneBook(persons) {
   const phoneBook = document.getElementById("phoneBook");
   removeChildren(phoneBook);
   try {
-    for (let person of persons.persons) {
-      // rightdiv build
+    for (let person of persons) {
       const callIcon = createElement("i", [], ["fas fa-phone"]);
-      // <i class="fas fa-info-circle" id="info" data-container="body" data-toggle="popover" data-placement="right">
       const info = createElement(
         "i",
         [],
@@ -25,7 +23,7 @@ async function renderPhoneBook(persons) {
         {
           "data-container": "body",
           "data-toggle": "popover",
-          "data-id": `${person.id}`,
+          "data-id": `${person._id}`,
         },
         { click: openContactInfo }
       );
@@ -46,7 +44,7 @@ async function renderPhoneBook(persons) {
         "button",
         [deleteIcon],
         ["button-delete"],
-        { "data-id": person.id },
+        { "data-id": person._id },
         { click: deletePhone }
       );
       const rightDiv = createElement("div", [info, callBtn, deleteBtn], []);
@@ -54,14 +52,20 @@ async function renderPhoneBook(persons) {
       const span = createElement("span", [person.number], []);
       const a = createElement("a", [person.name, span]);
       const leftDiv = createElement("div", [a]);
-      const li = createElement("li", [leftDiv, rightDiv], [], {}, {});
+      const li = createElement(
+        "li",
+        [leftDiv, rightDiv],
+        [],
+        { id: `index-${person.name[0].toUpperCase()}` },
+        {}
+      );
       phoneBook.append(li);
     }
   } catch (error) {}
 }
 
 function sortArray(array) {
-  array.persons.sort(function (a, b) {
+  array.sort(function (a, b) {
     if (a.name.toLowerCase() < b.name.toLowerCase()) {
       return -1;
     }
@@ -84,9 +88,8 @@ getDataBase();
 
 async function deletePhone(event) {
   event.target.closest("LI").remove();
-  const response = await axios.delete(
-    `${baseUrl}api/persons/${event.target.dataset.id}`
-  );
+  const id = event.target.closest("BUTTON").dataset.id;
+  await axios.delete(`${baseUrl}api/persons/${id}`);
 }
 
 function createElement(
@@ -140,7 +143,7 @@ async function filterLists(query) {
   console.log(query);
   const persons = await getDataBase();
   const filteredPersons = [];
-  for (const person of persons.persons) {
+  for (const person of persons) {
     const name = person.name.toLowerCase();
     if (name.indexOf(query) !== -1) {
       filteredPersons.push(person);
@@ -156,27 +159,25 @@ function removeChildren(elem) {
 // info
 document
   .getElementById("info1")
-  .addEventListener("mouseover", mouseoverInfoHandler);
-async function mouseoverInfoHandler(e) {
+  .addEventListener("click", mouseClickInfoHandler);
+async function mouseClickInfoHandler(e) {
+  console.log("im here");
   const infoDiv = document.querySelector(".info-div");
-  infoDiv.classList.remove("display-none");
+  infoDiv.style.display = "block";
   const phoneBookInfo = await getPhoneBookInfo();
-  console.log(phoneBookInfo);
   infoDiv.append(phoneBookInfo);
   const left = e.pageX;
   const top = e.pageY;
   const divHeight = infoDiv.offsetHeight;
-  infoDiv.style.left = left - 100 + "px";
+  infoDiv.style.left = left - 50 + "px";
   infoDiv.style.top = top - divHeight / 2 - 40 + "px";
-  e.target.addEventListener("mouseout", mouseoutInfoHandler);
+  setTimeout(() => {
+    infoDiv.textContent = "";
+    infoDiv.style.display = "none";
+  }, 3000);
 }
-function mouseoutInfoHandler(e) {
-  const infoDiv = document.querySelector(".info-div");
-  infoDiv.classList.add("display-none");
-  while (infoDiv.firstChild) infoDiv.removeChild(infoDiv.firstChild);
-  e.target.removeEventListener("mouseout", mouseoutInfoHandler);
-}
+
 async function getPhoneBookInfo() {
-  const response = await axios.get(`http://localhost:3001/info`);
+  const response = await axios.get(`${baseUrl}info`);
   return response.data;
 }

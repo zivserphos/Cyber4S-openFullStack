@@ -33,7 +33,7 @@ body {
 }
 
 .element.custom {
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -92,7 +92,8 @@ body {
   line-height: 22px;
   text-indent: 300px;
 }
-.element .element-header input:focus + * {
+.element .element-header input:focus + *,
+.element .element-header input:focus + * + * {
   display: none;
 }
 .element .element-header input:focus {
@@ -316,4 +317,29 @@ main .leftDiv {
   background: rgb(196, 196, 196);
   z-index: 1;
   padding: 1em;
+}
+
+// copyrights
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
+footer {
+  background-color: #3a3a3a;
+
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.copyrights {
+  color: #f5f5f5;
+  margin: 0 auto;
+  padding: 2.5vh 0;
+}
+.writers {
+  text-decoration: none;
+  color: #f5f5f5;
+  :hover {
+    color: cornflowerblue;
+  }
 }

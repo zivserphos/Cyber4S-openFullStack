@@ -1,37 +1,83 @@
 import "./styles.scss";
 import axios from "axios";
 
-async function addContact(event) {
-  event.preventDefault();
+async function updateContact() {
+  console.log("put request");
   const label = document.getElementById("resultdiv");
   try {
-    console.log("outside if");
     const firstName = document.getElementById("firstName").value;
-    console.log("first");
     const lastName = document.getElementById("lastName").value;
-    console.log("last");
     const number = document.getElementById("number").value;
-    console.log("number");
+    const token = document.getElementById("token").value;
     if (
       validateFirstName(firstName) &&
       validateLastName(lastName) &&
       validateNumber(number)
     ) {
+      label.style.display = "block";
       label.innerText = "Loading...";
-      console.log("inside the if of add contact");
-      const response = await axios.post("http://localhost:3001/api/persons", {
+      const response = await axios.put("/api/persons", {
         name: firstName + " " + lastName,
         number: number,
+        token: token,
       });
+      label.innerText = response.data;
+      setTimeout(() => {
+        label.style.display = "none";
+        label.innerText = "";
+      }, 3 * 1000);
+    }
+  } catch (err) {
+    const errorDiv = document.getElementById("errordiv");
+    label.style.display = "none";
+    errorDiv.style.display = "block";
+    errorDiv.innerText = `${err.response.data.error}`;
+    setTimeout(() => {
+      errorDiv.style.display = "none";
+      errorDiv.innerText = "";
+    }, 3 * 1000);
+  }
+}
+
+async function addContact(event) {
+  event.preventDefault();
+  const label = document.getElementById("resultdiv");
+  try {
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const number = document.getElementById("number").value;
+    const token = document.getElementById("token").value;
+    if (
+      validateFirstName(firstName) &&
+      validateLastName(lastName) &&
+      validateNumber(number)
+    ) {
+      label.style.display = "block";
+      label.innerText = "Loading...";
+      const response = await axios.post("/api/persons", {
+        name: firstName + " " + lastName,
+        number: number,
+        token: token,
+      });
+      console.log(firstName, lastName);
       label.innerText = `Added ${firstName} ${lastName} Successfuly`;
       setTimeout(() => {
+        label.style.display = "none";
         label.innerText = "";
       }, 3 * 1000);
     }
   } catch (error) {
-    label.innerText = "";
-    console.log(error);
-    return error;
+    const errorDiv = document.getElementById("errordiv");
+    if (error.response.status === 409) {
+      return updateContact();
+    }
+    label.style.display = "none";
+    errorDiv.style.display = "block";
+    errorDiv.innerText = `${error.response.data.error}`;
+    setTimeout(() => {
+      errorDiv.style.display = "none";
+      errorDiv.innerText = "";
+    }, 3 * 1000);
   }
 }
 
