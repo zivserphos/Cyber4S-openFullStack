@@ -2,7 +2,6 @@ import "./styles.scss";
 import axios from "axios";
 
 async function updateContact() {
-  console.log("put request");
   const label = document.getElementById("resultdiv");
   try {
     const firstName = document.getElementById("firstName").value;
@@ -59,7 +58,6 @@ async function addContact(event) {
         number: number,
         token: token,
       });
-      console.log(firstName, lastName);
       label.innerText = `Added ${firstName} ${lastName} Successfuly`;
       setTimeout(() => {
         label.style.display = "none";
@@ -83,7 +81,6 @@ async function addContact(event) {
 
 const addButton = document.getElementById("addButton");
 addButton.addEventListener("click", addContact);
-console.log(addButton);
 
 function validateFirstName(name) {
   if (/^[a-zA-Z]/.test(name)) {

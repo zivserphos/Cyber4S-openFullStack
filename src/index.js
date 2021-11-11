@@ -7,7 +7,6 @@ async function openContactInfo(event) {
   const id = event.target.dataset.id;
 
   const response = await axios.get(`${baseUrl}api/persons/${id}`);
-  console.log(response.data);
   alert(JSON.stringify(response.data));
 }
 async function renderPhoneBook(persons) {
@@ -140,7 +139,6 @@ async function searchHandler(e) {
 }
 
 async function filterLists(query) {
-  console.log(query);
   const persons = await getDataBase();
   const filteredPersons = [];
   for (const person of persons) {
@@ -161,7 +159,6 @@ document
   .getElementById("info1")
   .addEventListener("click", mouseClickInfoHandler);
 async function mouseClickInfoHandler(e) {
-  console.log("im here");
   const infoDiv = document.querySelector(".info-div");
   infoDiv.style.display = "block";
   const phoneBookInfo = await getPhoneBookInfo();
