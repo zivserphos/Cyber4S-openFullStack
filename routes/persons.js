@@ -9,13 +9,12 @@ function generateId() {
   return Math.floor(Math.random() * 1000);
 }
 
-function isNameExist(name, fileData) {
-  return fileData.findIndex((obj) => obj.name === name) !== -1;
-}
+// function isNameExist(name, fileData) {
+//   return fileData.findIndex((obj) => obj.name === name) !== -1;
+// }
 
 personsRouter.put("/", async (req, res, next) => {
   const obj = Object.assign({}, req.body);
-  //const personName = await Person.find({ name: obj.name });
   try {
     await updatePersonNumber(obj.name, obj.number);
     res.send("Person number updated succesfully");
@@ -38,14 +37,14 @@ personsRouter.post("/", async (req, res, next) => {
   if (obj.token !== secureCode) {
     return next({ status: 400, message: { error: "token Invalid" } });
   }
-  if (isNameExist(obj.name, fileData)) {
-    return next({ status: 400, message: { error: "name is not available" } });
-  }
+  // if (isNameExist(obj.name, fileData)) {
+  //   return next({ status: 400, message: { error: "name is not available" } });
+  // }
   try {
     await createNewPerson(obj.id, obj.name, obj.number);
     res.send("Person added succesfully");
   } catch (err) {
-    next({ status: 502, message: { error: "could not succed" } });
+    next({ status: 409, message: { error: err._message } });
   }
 });
 
@@ -73,12 +72,7 @@ module.exports = personsRouter;
 
 async function createNewPerson(id, name, number) {
   const person = new Person({ _id: id, name: name, number: number });
-  try {
-    await person.save();
-    return true;
-  } catch (error) {
-    return false;
-  }
+  await person.save();
 }
 
 async function updatePersonNumber(_name, _number) {

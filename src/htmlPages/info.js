@@ -68,7 +68,7 @@ async function addContact(event) {
     }
   } catch (error) {
     const errorDiv = document.getElementById("errordiv");
-    if (error.response.data.error === "name is not available") {
+    if (error.response.status === 409) {
       return updateContact();
     }
     label.style.display = "none";

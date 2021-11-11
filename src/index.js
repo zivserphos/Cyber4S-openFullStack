@@ -178,8 +178,6 @@ async function mouseClickInfoHandler(e) {
 }
 
 async function getPhoneBookInfo() {
-  console.log("gggggggggggg");
   const response = await axios.get(`${baseUrl}info`);
-  console.log("gggggggggggg");
   return response.data;
 }
