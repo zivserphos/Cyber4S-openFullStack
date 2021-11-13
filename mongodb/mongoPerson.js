@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const personSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
@@ -7,6 +7,6 @@ const personSchema = new mongoose.Schema({
   number: { type: String, minlength: 8, required: true },
 });
 personSchema.plugin(uniqueValidator);
-const Person = mongoose.model("person", personSchema);
+const Person = mongoose.model('person', personSchema);
 
 module.exports = Person;

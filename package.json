@@ -4,6 +4,7 @@
   "description": "In this repository we are going to particpating work in the openFullStack platform",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "build": "webpack",
     "serve": "webpack serve",
     "start": "node index.js",
